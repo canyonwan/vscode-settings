@@ -1,0 +1,10 @@
+
+ RUN  v0.12.3 /Users/canyonwan/Documents/code.aliyun/enforce-web
+
+ √ src/views/unit-test/todo.test.ts > renders a todo
+
+Test Files  1 passed (1)
+     Tests  1 passed (1)
+      Time  2.12s (in thread 26ms, 8142.15%)
+
+JSON report written to /var/folders/f3/wj3_6dwn0rd30tvmb4x1y9pm0000gn/T/vitest-report-jfck7.json

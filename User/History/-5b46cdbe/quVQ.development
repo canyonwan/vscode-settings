@@ -1,0 +1,37 @@
+# 保定
+#VUE_APP_ENV='baoding'
+# 开发
+#VUE_APP_DEVAPI='http://192.168.124.14:9002/'
+
+# 演示
+# VUE_APP_DEVAPI='http://27.128.193.219:30003/'
+# VUE_APP_FILEURL='http://27.128.193.219:12001/dev_files/'
+
+
+# 河南 begin
+#VUE_APP_ENV='henan'
+#VUE_APP_DEVAPI='http://192.168.124.13:9002/'
+# 河南 end
+
+
+
+# 北京昌平
+ VUE_APP_ENV='beijingchangping'
+# #开发
+ VUE_APP_DEVAPI='http://192.168.124.12:9002/'
+#正式
+#VUE_APP_BASEAPI='http://218.246.81.195:30002/'
+# VUE_APP_FILEURL='http://218.246.81.195:9000/zft-files/'
+
+
+# 开发环境 文件地址
+VUE_APP_FILEURL='http://27.128.193.219:12001/dev_files/'
+
+
+# 火点文件地址
+VUE_APP_FIRE_FILEURL='http://120.211.30.52:8686/kms/services/rest/dataInfoService/getImage?id='
+
+# 布局风格 0 指挥中心布局 1 只有案件中心布局
+VUE_APP_LAYOUT_TYPE= 1
+# 上传文件类型 0 oss  1 s3
+VUE_APP_FILE_TYPE= 1

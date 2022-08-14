@@ -1,0 +1,11 @@
+{
+  "cSpell.language": "en,en-GB",
+  "cSpell.words": [
+    "pinia",
+    "vite",
+    "vueuse"
+  ],
+  "editor.find.addExtraSpaceOnTop": false,
+  "testing.automaticallyOpenPeekView": "never",
+  "git.ignoreLimitWarning": true
+}

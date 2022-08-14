@@ -1,0 +1,13 @@
+{
+  "miniprogramRoot": "./",
+  "projectname": "vms-app",
+  "description": "",
+  "appid": "wx0fedf73090af5391",
+  "setting": {
+    "urlCheck": true,
+    "es6": false,
+    "postcss": false,
+    "minified": false
+  },
+  "compileType": "miniprogram"
+}

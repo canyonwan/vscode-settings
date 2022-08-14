@@ -1,0 +1,13 @@
+node_modules
+.DS_Store
+dist
+dist-ssr
+*.local
+.vscode/settings.json
+.vscode/launch.json
+.vscode
+.idea
+.gitignore
+stats.html
+src/components.d.ts
+auto-imports.d.ts

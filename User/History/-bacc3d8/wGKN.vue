@@ -1,0 +1,57 @@
+<script setup lang="ts">
+  import { queryCauseListForProgram } from '@/api/program/program'
+  import type { Ref } from 'vue'
+  import type { ICauseList } from '@/api/program/types'
+  import DTabPane from './components/d-tab-pane.vue'
+  import { handleNextStepKey } from './components/foo-keys'
+  import DDaysOfViolation from './components/d-days-of-violation.vue'
+  const fineId = '1000010' // 罚款id
+
+  const currentStep = ref<number>(1)
+  const el = ref<HTMLElement>()
+
+  useScroll(el, {
+    offset: { top: 30, left: 0 }
+  })
+
+  const injectProgramId: Ref<string> = inject('provideProgramId')!
+
+  provide(handleNextStepKey, handleNextStep)
+
+  const causeListData = ref<ICauseList[]>()
+  const discretionTypeId = ref<string>()
+
+  // 获取[罚款]的违法行为列表
+  async function getCauseListForProgram() {
+    const res = await queryCauseListForProgram({ proceduresId: unref(injectProgramId), caseTypeIdList: [fineId] })
+    const { causeList } = res.filter((item) => item.caseType === 101).at(0)!
+    causeListData.value = causeList
+  }
+
+  function handleNextStep() {
+    if (currentStep.value === null) currentStep.value = 1
+    else if (currentStep.value === 2) currentStep.value--
+    else currentStep.value++
+  }
+
+  function handleDiscretionTypeId(id: string) {
+    discretionTypeId.value = id
+  }
+
+  onMounted(() => {
+    getCauseListForProgram()
+  })
+</script>
+<template>
+  <n-card class="discretion" ref="el">
+    <!-- 裁量类型是违法天数时 -->
+    <d-days-of-violation v-if="discretionTypeId === '1000003'" />
+    <div v-else>
+      <n-tabs type="segment" :default-value="causeListData?.at(0)?.id">
+        <n-tab-pane v-for="item in causeListData" :key="item.id" :name="item.id" :tab="item.name">
+          <d-tab-pane :current-step="currentStep" :programCauseId="item.id" @handleDiscretionTypeId="handleDiscretionTypeId" />
+        </n-tab-pane>
+      </n-tabs>
+    </div>
+  </n-card>
+</template>

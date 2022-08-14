@@ -1,0 +1,10 @@
+
+ RUN  v0.12.3 /Users/canyonwan/Documents/code.aliyun/enforce-web
+
+ √ src/views/program/discretion/demo.test.ts > displays message
+
+Test Files  1 passed (1)
+     Tests  1 passed (1)
+      Time  1.79s (in thread 23ms, 7778.06%)
+
+JSON report written to /var/folders/f3/wj3_6dwn0rd30tvmb4x1y9pm0000gn/T/vitest-report-jfck3.json

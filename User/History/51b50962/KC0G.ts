@@ -1,0 +1,20 @@
+import type { IDeletedIllegalAct, IDeletedNodeItem } from '@/api/program/types'
+
+export function useCheckAll(checked: boolean, rubbish: Array<IDeletedNodeItem | IDeletedIllegalAct>): number[] {
+  // 选中的集合
+  const checkedChildren = ref<number[]>([])
+
+  rubbish.forEach((item) => {
+    if (checked) {
+      if ('nodeId' in item) {
+        checkedChildren.value = rubbish!.map((item) => item['nodeId'])
+      } else if ('punishId' in item) {
+        checkedChildren.value = rubbish!.map((item) => item['punishId'])
+      }
+    } else {
+      checkedChildren.value.length = 0
+    }
+  })
+
+  return checkedChildren.value
+}

@@ -1,0 +1,9 @@
+# port
+VITE_PORT = 8001
+
+# spa-title
+VITE_GLOB_APP_TITLE = 商城管理系统
+
+# spa shortname
+VITE_GLOB_APP_SHORT_NAME = 商城管理系统
+

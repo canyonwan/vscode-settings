@@ -1,0 +1,87 @@
+{
+	"import": {
+		"scope": "javascript,typescript",
+		"prefix": "im",
+		"body": [
+			"import { $1 } from '$2';"
+		],
+		"description": "Import a module"
+	},
+	"export-all": {
+		"scope": "javascript,typescript",
+		"prefix": "ex",
+		"body": [
+			"export * from '$2';"
+		],
+		"description": "Export a module"
+	},
+	"vue-computed": {
+		"scope": "javascript,typescript,vue",
+		"prefix": "comp",
+		"body": [
+			"computed(() => { $1 })"
+		]
+	},
+	"vue-watch-effect": {
+		"scope": "javascript,typescript,vue",
+		"prefix": "watchE",
+		"body": [
+			"watchEffect(() => {",
+			"  $1",
+			"})"
+		]
+	},
+	"const template": {
+		"prefix": "const",
+		"body": [
+			"const $name = () => {",
+			"  // ",
+			"}"
+		],
+		"description": "const template"
+	},
+	"function template": {
+		"prefix": "fn",
+		"body": [
+			"function $name(params: any) {",
+			"  //",
+			"}"
+		],
+		"description": "function template"
+	},
+	"reactive state template": {
+		"prefix": "state",
+		"body": [
+			"  const state = reactive({",
+			"    // ",
+			"  })"
+		],
+		"description": "reactive state template"
+	},
+	"reactive searchParams template": {
+		"prefix": "sp",
+		"body": [
+			"  const searchParams = reactive({",
+			"    // ",
+			"  })"
+		],
+		"description": "reactive searchParams template"
+	},
+	"ref template": {
+		"prefix": "ref",
+		"body": [
+			"  const $name = ref()"
+		],
+		"description": "ref template"
+	},
+	"interface template": {
+		"prefix": "interface",
+		"body": [
+			"interface $name {",
+			"  number: string",
+			"  name: string",
+			"}"
+		],
+		"description": "interface template"
+	}
+}

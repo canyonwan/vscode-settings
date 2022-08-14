@@ -1,0 +1,124 @@
+{
+  "pages": [
+    // pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+    {
+      "path": "pages/index/index",
+      "style": {
+        "navigationBarTitleText": "云巅首页123",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/goods/index",
+      "style": {
+        "navigationBarTitleText": "云巅商城",
+        "navigationBarTextStyle": "black"
+      }
+    },
+    {
+      "path": "pages/goods-cate/index",
+      "style": {
+        "navigationBarTitleText": "商品分类"
+      }
+    },
+    {
+      "path": "pages/goods/goodsDetail",
+      "style": {
+        "navigationBarTitleText": "商品详情"
+      }
+    },
+    {
+      "path": "pages/shopping-cart/index",
+      "style": {
+        "navigationBarTitleText": "购物车"
+      }
+    },
+    {
+      "path": "pages/user/index",
+      "style": {
+        "navigationBarTitleText": "用户中心"
+      }
+    },
+    {
+      "path": "pages/discover-home/index",
+      "style": {
+        "navigationBarTitleText": "发现首页"
+      }
+    }
+  ],
+  "subPackages": [
+    {
+      "root": "pages/discover",
+      "pages": [
+        {
+          "path": "activity",
+          "style": {
+            "navigationBarTitleText": "活动中心",
+            "enablePullDownRefresh": false
+          }
+        }
+      ]
+    },
+    {
+      "root": "pages/my",
+      "pages": [
+        {
+          "path": "memberCenter",
+          "style": {
+            "navigationBarTitleText": "会员中心",
+            "navigationBarBackgroundColor": "#102c24",
+            "enablePullDownRefresh": false
+          }
+        }
+      ]
+    }
+  ],
+  "globalStyle": {
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "云巅商城",
+    "navigationBarBackgroundColor": "#7F42FF",
+    "backgroundColor": "#7F42FF",
+    "usingComponents": {
+      "van-button": "/wxcomponents/vant/dist/button/index"
+    }
+  },
+  "lazyCodeLoading": "requiredComponents",
+  "tabBar": {
+    "color": "#bfbfbf",
+    "selectedColor": "#7F42FF",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "static/images/tab-bar/home.png",
+        "selectedIconPath": "static/images/tab-bar/home_on.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/goods/index",
+        "iconPath": "static/images/tab-bar/cates.png",
+        "selectedIconPath": "static/images/tab-bar/cates_on.png",
+        "text": "分类"
+      },
+      {
+        "pagePath": "pages/discover-home/index",
+        "iconPath": "static/images/tab-bar/shop.png",
+        "selectedIconPath": "static/images/tab-bar/shop_on.png",
+        "text": "购物车"
+      },
+      {
+        "pagePath": "pages/user/index",
+        "iconPath": "static/images/tab-bar/mine.png",
+        "selectedIconPath": "static/images/tab-bar/mine_on.png",
+        "text": "我的"
+      }
+    ]
+  },
+  "easycom": {
+    "autoscan": true,
+    "custom": {
+      "^uni-(.*)": "@dcloudio/uni-ui/lib/uni-$1/uni-$1.vue"
+    }
+  }
+}

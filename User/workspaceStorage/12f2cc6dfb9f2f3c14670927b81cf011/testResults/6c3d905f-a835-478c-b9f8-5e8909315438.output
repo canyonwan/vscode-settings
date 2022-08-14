@@ -1,0 +1,18 @@
+
+ RUN  v0.12.3 /Users/canyonwan/Documents/code.aliyun/enforce-web
+
+
+warn - You have enabled the JIT engine which is currently in preview.
+warn - Preview features are not covered by semver, may introduce breaking changes, and can change at any time.
+stderr | src/views/program/discretion/demo.test.ts > create a div
+[Vue warn]: Missing required prop: "msg"
+  at <Demo ref="VTU_COMPONENT" >
+  at <VTUROOT>
+
+ √ src/views/program/discretion/demo.test.ts > create a div
+
+Test Files  1 passed (1)
+     Tests  1 passed (1)
+      Time  2.68s (in thread 21ms, 12754.38%)
+
+JSON report written to /var/folders/f3/wj3_6dwn0rd30tvmb4x1y9pm0000gn/T/vitest-report-jfck8.json

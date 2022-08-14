@@ -1,0 +1,99 @@
+<template>
+  <div class="law-type">
+    <n-grid cols="1 s:1 m:1 l:4 xl:4 2xl:4" responsive="screen" :x-gap="12">
+      <n-grid-item span="2">
+        <n-card title="法类型" :segmented="{ content: 'soft' }">
+          <law-tree-comp :law-data="lawTypes" :request-type="LawEnum.TYPE" @on-handler="onTypeHandler" :deleteAction="deleteLawType" :submitAction="saveLawTypes" />
+        </n-card>
+      </n-grid-item>
+      <n-grid-item span="2">
+        <n-card title="法标签" :segmented="{ content: 'soft' }">
+          <law-tree-comp :law-data="lawTags" :request-type="LawEnum.TAG" @on-handler="onTagHandler" :deleteAction="deleteLawTag" :submitAction="saveLawTag" />
+        </n-card>
+      </n-grid-item>
+      <n-grid-item span="2">
+        <n-card title="案由标签" :segmented="{ content: 'soft' }">
+          <law-tree-comp :law-data="causeTags" :request-type="LawEnum.TAG" @on-handler="onCauseTagsHandler" :deleteAction="deleteCauseTag" :submitAction="saveCauseTags" />
+        </n-card>
+      </n-grid-item>
+    </n-grid>
+  </div>
+</template>
+
+<script lang="ts">
+  import LawTreeComp from '@/views/law/components/law-tree-comp.vue'
+  import { LawEnum } from '@/enums/law-enum'
+  import { queryAllLawTypes } from '@/api/law/type'
+  import type { ILawTagType } from '@/api/law/types'
+  import { queryAllLawTags } from '@/api/law/tag'
+  import { deleteLawType } from '@/api/law/type'
+  import { deleteLawTag } from '@/api/law/tag'
+  import { saveLawTypes } from '@/api/law/type'
+  import { saveLawTag } from '@/api/law/tag'
+  import { deleteCauseTag, queryAllCauseTags, saveCauseTags } from '@/api/cause-manage/cause-manage'
+
+  export default defineComponent({
+    name: 'ILawType',
+    components: {
+      LawTreeComp
+    },
+    setup() {
+      const lawTypes = ref([] as ILawTagType[])
+      const lawTags = ref([] as ILawTagType[])
+      const causeTags = ref([] as ILawTagType[])
+
+      function processTreeData(data: ILawTagType[]) {
+        if (data.length > 0) {
+          for (const ele of data) {
+            if (ele.list && ele.list.length > 0) {
+              processTreeData(ele.list)
+            } else {
+              delete ele.list
+            }
+          }
+        }
+        return data
+      }
+
+      // 获取法类型
+      async function queryLawTypes() {
+        let res = await queryAllLawTypes()
+        lawTypes.value = processTreeData(res)
+      }
+
+      // 获取标签数据
+      async function queryLawTags() {
+        let res = await queryAllLawTags()
+        lawTags.value = processTreeData(res)
+      }
+
+      // 获取案由标签
+      async function queryCauseTags() {
+        let res = await queryAllCauseTags()
+        causeTags.value = processTreeData(res)
+      }
+
+      // 获取法类型回调
+      async function onTypeHandler() {
+        await queryLawTypes()
+      }
+
+      // 获取法标签回调
+      async function onTagHandler() {
+        await queryLawTags()
+      }
+
+      // 获取案由标签回调
+      async function onCauseTagsHandler() {
+        await queryCauseTags()
+      }
+
+      onMounted(() => {
+        queryLawTypes()
+        queryLawTags()
+        queryCauseTags()
+      })
+      return { lawTypes, lawTags, causeTags, LawEnum, onTypeHandler, onTagHandler, onCauseTagsHandler, deleteLawType, deleteLawTag, deleteCauseTag, saveLawTypes, saveLawTag, saveCauseTags }
+    }
+  })
+</script>

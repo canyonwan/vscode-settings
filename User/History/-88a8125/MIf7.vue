@@ -1,0 +1,20 @@
+<script setup lang="ts">
+  import { ITimeLineTreeLeaf } from '@/api/program/types'
+
+  const props = defineProps({
+    children: {
+      type: Array as PropType<Array<ITimeLineTreeLeaf>>,
+      default: () => []
+    }
+  })
+</script>
+<template>
+  <n-list>
+    <n-list-item v-for="item in props.children" :key="item.id">
+      通过type参数 来判断是添加同级节点 还是子级节点 0为同级 1则为子级
+      <template #suffix>
+        <n-button type="error" ghost>删除</n-button>
+      </template>
+    </n-list-item>
+  </n-list>
+</template>

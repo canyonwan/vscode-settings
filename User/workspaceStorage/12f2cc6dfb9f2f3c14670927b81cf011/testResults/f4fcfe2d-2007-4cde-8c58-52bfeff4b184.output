@@ -1,0 +1,22 @@
+
+ RUN  v0.12.3 /Users/canyonwan/Documents/code.aliyun/enforce-web
+
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/views/unit-test/todo.test.ts [ src/views/unit-test/todo.test.ts ]
+Error: Failed to parse source for import analysis because the content contains invalid JS syntax. Install @vitejs/plugin-vue to handle .vue files.
+ ❯ formatError node_modules/vite/dist/node/chunks/dep-e1fc1d62.js:38724:46
+ ❯ TransformContext.error node_modules/vite/dist/node/chunks/dep-e1fc1d62.js:38720:19
+ ❯ TransformContext.transform node_modules/vite/dist/node/chunks/dep-e1fc1d62.js:56837:22
+ ❯ async Object.transform node_modules/vite/dist/node/chunks/dep-e1fc1d62.js:38961:30
+ ❯ async doTransform node_modules/vite/dist/node/chunks/dep-e1fc1d62.js:55918:29
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+Test Files  1 failed (1)
+     Tests  no tests
+      Time  1.98s (in thread 0ms, Infinity%)
+
+JSON report written to /var/folders/f3/wj3_6dwn0rd30tvmb4x1y9pm0000gn/T/vitest-report-jfck1.json
+Cannot find test file:///Users/canyonwan/Documents/code.aliyun/enforce-web/src/views/unit-test/todo.test.ts/renders a todo@0

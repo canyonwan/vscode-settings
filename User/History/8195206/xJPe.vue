@@ -1,0 +1,105 @@
+<script setup lang="ts">
+  import { relateProgramOrTask, queryTaskList, IRelateProgramOrTask } from '@/api/workflow/cause'
+  import { sponsorOptions, createColumns } from './relate-task-options'
+  import type { IEnums, ITaskItem } from '@/api/workflow/types'
+  import type { ICaseConnectInfo } from '@/api/time-line/types'
+  import { queryEnums } from '@/api/workflow/model-manage'
+  import { SelectOption } from 'naive-ui'
+
+  const props = defineProps({
+    caseInfo: {
+      type: Object as PropType<ICaseConnectInfo>,
+      default: () => {}
+    }
+  })
+
+  const emit = defineEmits(['submit-handler'])
+
+  interface ISearch {
+    taskStage: number
+    sponsor: number
+  }
+
+  interface ISources {
+    taskSources: IEnums[] // 任务来源
+    taskStageEnums: SelectOption[] // 任务阶段
+  }
+
+  const tableRef = ref()
+
+  const sources: ISources = reactive({
+    taskSources: [],
+    taskStageEnums: []
+  })
+
+  const chooseTask = ref<Partial<ITaskItem>>({})
+
+  const searchParams: ISearch = reactive({
+    taskStage: 1,
+    sponsor: 1
+  })
+
+  const reloadTable = (param = {}) => {
+    tableRef.value.reload(param)
+  }
+
+  async function getTaskList(page: any) {
+    return await queryTaskList({ ...page, phaseTypeCode: searchParams.taskStage, asInitiator: searchParams.sponsor === 1, associatedTask: true })
+  }
+
+  function updateCheckRowKeys(_: string[], rows: ITaskItem[]) {
+    chooseTask.value = rows[0]
+  }
+
+  async function getEnums() {
+    const res = await queryEnums({ columnNameList: ['TaskType', 'TaskStatus'] })
+    for (const item of res) {
+      if (item.pojoEntityName === 'TaskStatus') {
+        // 任务阶段
+        sources.taskStageEnums.push({
+          label: item.enumChineseDescription,
+          value: item.enumCode
+        })
+      } else {
+        // 任务来源
+        sources.taskSources.push(item)
+      }
+    }
+  }
+
+  getEnums()
+
+  async function onRelateTask() {
+    let params: IRelateProgramOrTask = {
+      dataId: props.caseInfo.dataId,
+      dataType: props.caseInfo.dataType,
+      targetType: chooseTask.value!.taskTypeId!,
+      targetId: chooseTask.value!.id!,
+      timeLineId: props.caseInfo.timeLineId,
+      toolId: props.caseInfo.toolId,
+      toolGroup: props.caseInfo.toolGroup
+    }
+    await relateProgramOrTask(params)
+    emit('submit-handler')
+  }
+</script>
+<template>
+  <div class="relate-task">
+    <n-space>
+      <n-select style="width: 140px" v-model:value="searchParams.taskStage" :options="sources.taskStageEnums" />
+      <n-select style="width: 140px" v-model:value="searchParams.sponsor" :options="sponsorOptions" />
+      <n-button type="primary" size="medium" @click="reloadTable">搜索</n-button>
+    </n-space>
+
+    <BasicTable
+      :request="getTaskList"
+      ref="tableRef"
+      :row-key="(row: ITaskItem) => row.id"
+      :columns="createColumns({ ...sources })"
+      :action-column="null"
+      @update:checked-row-keys="updateCheckRowKeys"
+    />
+
+    <n-button type="primary" size="medium" @click="onRelateTask" class="float-right mt-4" :disabled="Object.keys(chooseTask).length === 0">确定</n-button>
+  </div>
+</template>

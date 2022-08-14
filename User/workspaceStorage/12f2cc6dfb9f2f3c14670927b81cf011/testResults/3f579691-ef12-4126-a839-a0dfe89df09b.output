@@ -1,0 +1,27 @@
+
+ RUN  v0.12.3 /Users/canyonwan/Documents/code.aliyun/enforce-web
+
+ × src/views/program/discretion/demo.test.ts > displays message
+   → document is not defined
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/views/program/discretion/demo.test.ts > displays message
+ReferenceError: document is not defined
+ ❯ mount node_modules/@vue/test-utils/dist/vue-test-utils.cjs.js:7847:14
+    7845|     addToDoNotStubComponents(component);
+    7846|     registerStub({ source: originalComponent, stub: component });
+    7847|     var el = document.createElement('div');
+       |              ^
+    7848|     if (options === null || options === void 0 ? void 0 : options.atta…
+    7849|         var to = void 0;
+ ❯ Module.shallowMount node_modules/@vue/test-utils/dist/vue-test-utils.cjs.js:8029:12
+ ❯ src/views/program/discretion/demo.test.ts:23:18
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+Test Files  1 failed (1)
+     Tests  1 failed (1)
+      Time  1.53s (in thread 5ms, 30533.59%)
+
+JSON report written to /var/folders/f3/wj3_6dwn0rd30tvmb4x1y9pm0000gn/T/vitest-report-jfck2.json

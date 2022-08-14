@@ -1,0 +1,26 @@
+
+ RUN  v0.12.3 /Users/canyonwan/Documents/code.aliyun/enforce-web
+
+ × src/views/unit-test/todo.test.ts > renders a todo
+   → Unable to get [data-test="todo"] within: <div></div>
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/views/unit-test/todo.test.ts > renders a todo
+Error: Unable to get [data-test="todo"] within: <div></div>
+ ❯ VueWrapper.BaseWrapper.get node_modules/@vue/test-utils/dist/vue-test-utils.cjs.js:7366:15
+    7364|             return result;
+    7365|         }
+    7366|         throw new Error("Unable to get ".concat(selector, " within: ")…
+       |               ^
+    7367|     };
+    7368|     BaseWrapper.prototype.getComponent = function (selector) {
+ ❯ src/views/unit-test/todo.test.ts:13:23
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+Test Files  1 failed (1)
+     Tests  1 failed (1)
+      Time  2.03s (in thread 31ms, 6546.54%)
+
+JSON report written to /var/folders/f3/wj3_6dwn0rd30tvmb4x1y9pm0000gn/T/vitest-report-jfck6.json

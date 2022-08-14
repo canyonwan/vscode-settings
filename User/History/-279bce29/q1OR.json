@@ -1,0 +1,11 @@
+{
+  "const template": {
+    "prefix": "const",
+    "body": [
+      "const $name = () => {",
+      "  // ",
+      "}"
+    ],
+    "description": "const template"
+  }
+}

@@ -1,0 +1,75 @@
+<script setup lang="ts">
+import type { GlobEnvConfig } from "@/types/types";
+import type { UploadFileInfo } from "naive-ui/es/upload";
+import QRCodeVue3 from "qrcode-vue3";
+import { ref } from "vue";
+defineProps<{
+  msg: string;
+}>();
+
+const fileItem = ref<string>("");
+
+function handleFinish({ event: Event }) {
+  const res = eval("(" + Event.target.response + ")");
+  console.log(
+    "%c [ res ]-13",
+    "font-size:13px; background:#0095FF; color:white;",
+    res
+  );
+  // const infoField = componentSetting.upload.apiSetting.infoField;
+  // const { code } = res;
+  // const message = res.msg || res.message || "上传失败";
+  // const result = res[infoField];
+  // //成功
+  // if (code === ResultEnum.SUCCESS) {
+  //   state.imgList.push(result);
+  //   emit("update:value", state.imgList);
+  //   if (props.isSuccessBack) {
+  //     emit("onSuccess");
+  //   }
+  // } else message.error(message);
+}
+
+const ENV = import.meta.env as unknown as GlobEnvConfig;
+const { VITE_GLOB_API_URL } = ENV;
+const DOMAIN = "idv093d.qiniudns.com/";
+const bucketname = "1777-bucket";
+const ak = "aIlCDzSWnIMgq2kAXmrOr5-TF9QLwdz0VEZUvzhD";
+const sk = "fOJw46n43nMAlsii58CE13bTSlOHmpbPzPlmn0H2";
+</script>
+
+<template>
+  <div class="with-full flex justify-around">
+    <n-upload
+      list-type="image-card"
+      class="w-40"
+      action="https://www.mocky.io/v2/5e4bafc63100007100d8b70f"
+      @finish="handleFinish"
+    />
+    <QRCodeVue3
+      :width="200"
+      :height="200"
+      :value="fileItem || 'https://www.baidu.com'"
+      :qrOptions="{ typeNumber: 0, mode: 'Byte', errorCorrectionLevel: 'H' }"
+      :imageOptions="{ hideBackgroundDots: true, imageSize: 0.4, margin: 0 }"
+      :dotsOptions="{
+        type: 'dots',
+        color: '#26249a',
+        gradient: {
+          type: 'linear',
+          rotation: 0,
+          colorStops: [
+            { offset: 0, color: '#26249a' },
+            { offset: 1, color: '#26249a' },
+          ],
+        },
+      }"
+      :backgroundOptions="{ color: '#ffffff' }"
+      :cornersSquareOptions="{ type: 'dot', color: '#000000' }"
+      :cornersDotOptions="{ type: undefined, color: '#000000' }"
+      fileExt="png"
+      imgclass="img-qr"
+      :downloadOptions="{ name: 'vqr', extension: 'png' }"
+    />
+  </div>
+</template>

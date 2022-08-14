@@ -1,0 +1,33 @@
+<script setup lang="ts">
+  import { queryAnnouncementDetail } from '@/api/infrom'
+  import type { IAnnouncementDetail } from '@/api/infrom/types'
+
+  const props = defineProps({
+    announcementId: {
+      type: String
+    },
+    queryType: {
+      type: Number
+    }
+  })
+
+  const detail = ref<IAnnouncementDetail>()
+
+  async function getAnnouncementDetail() {
+    const res = await queryAnnouncementDetail(props.announcementId!)
+    detail.value = res
+  }
+
+  onMounted(() => {
+    getAnnouncementDetail()
+  })
+</script>
+<template>
+  <div class="">
+    <div class="text-center text-lg">{{ detail?.title }}</div>
+    <!-- <div class="pl-10 text-center text-xs text-gray-500 py-2">来自: {{ detail?.sendUserName }}</div> -->
+    <div class="pl-10 text-xs">{{ detail?.receivingGroupTypeNames }}: </div>
+    <div class="text-lg py-4">{{ detail?.content }}</div>
+    <media-preview :values="detail?.fileInfos" v-if="detail?.fileInfos" />
+  </div>
+</template>

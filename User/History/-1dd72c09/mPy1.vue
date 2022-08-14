@@ -1,0 +1,28 @@
+<template>
+  <div class="menu-table-list">
+    <basic-table :row-key="(row: IDiscretionMenuType) => row.id" :request="props.loadTableData" v-bind="attrs" ref="tableRef" :columns="tableColumns" :action-column="{}" :scroll-x="1800">
+      <template #toolbar><slot name="toolbar"></slot> </template>
+    </basic-table>
+  </div>
+</template>
+
+<script setup lang="ts">
+  import type { IDiscretionMenuType } from '@/api/cause-manage/types'
+  import { tableColumns } from '@/views/cause-library/discretion/menu/columns'
+
+  const props = defineProps({
+    loadTableData: {
+      type: Function as PropType<(...arg: any[]) => Promise<any>>,
+      default: null
+    }
+  })
+  const attrs = useAttrs()
+
+  const tableRef = ref()
+
+  const reloadTable = () => {
+    tableRef.value.reload()
+  }
+
+  defineExpose({ reloadTable })
+</script>

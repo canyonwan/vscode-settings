@@ -1,0 +1,24 @@
+
+ RUN  v0.12.3 /Users/canyonwan/Documents/code.aliyun/enforce-web
+
+stdout | src/views/program/discretion/demo.test.ts > create a div
+wrapper <div class="greetings">
+  <h1 class="green"></h1>
+  <!--v-if-->
+</div>
+
+stderr | src/views/program/discretion/demo.test.ts > create a div
+[Vue warn]: Missing required prop: "msg"
+  at <Demo ref="VTU_COMPONENT" >
+  at <VTUROOT>
+[Vue warn]: Missing required prop: "show"
+  at <Demo ref="VTU_COMPONENT" >
+  at <VTUROOT>
+
+ √ src/views/program/discretion/demo.test.ts > create a div
+
+Test Files  1 passed (1)
+     Tests  1 passed (1)
+      Time  1.91s (in thread 33ms, 5792.08%)
+
+JSON report written to /var/folders/f3/wj3_6dwn0rd30tvmb4x1y9pm0000gn/T/vitest-report-jfck9.json

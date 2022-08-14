@@ -1,0 +1,44 @@
+[
+	{
+		"name": "enforce-web",
+		"rootPath": "/Users/canyonwan/Documents/code.aliyun/enforce-web",
+		"paths": [],
+		"tags": [],
+		"enabled": true
+	},
+	{
+		"name": "司法局",
+		"rootPath": "/Users/canyonwan/Documents/code.aliyun/judicial-department-web",
+		"paths": [],
+		"tags": [],
+		"enabled": true
+	},
+	{
+		"name": "环责险",
+		"rootPath": "/Users/canyonwan/Documents/code.aliyun/hzx-wf-portal",
+		"paths": [],
+		"tags": [],
+		"enabled": true
+	},
+	{
+		"name": "vms-app",
+		"rootPath": "/Users/canyonwan/Documents/gitee.com/develop/vms-app",
+		"paths": [],
+		"tags": [],
+		"enabled": true
+	},
+	{
+		"name": "vms-web",
+		"rootPath": "/Users/canyonwan/Documents/gitee.com/veterinary_medicine_mall_admin",
+		"paths": [],
+		"tags": [],
+		"enabled": true
+	},
+	{
+		"name": "vue3-core-lite",
+		"rootPath": "/Users/canyonwan/Documents/me/vue3-core-lite",
+		"paths": [],
+		"tags": [],
+		"enabled": true
+	}
+]

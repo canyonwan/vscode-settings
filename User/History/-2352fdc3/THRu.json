@@ -1,0 +1,19 @@
+{
+	"folders": [
+		{
+			"name": "enforce-web",
+			"path": "/Users/canyonwan/Documents/code.aliyun/enforce-web"
+		}
+	],
+	"settings": {
+		"cSpell.language": "en,en-GB",
+		"cSpell.words": [
+			"pinia",
+			"vite",
+			"vueuse"
+		],
+		"editor.find.addExtraSpaceOnTop": false,
+		"testing.automaticallyOpenPeekView": "never",
+		"git.ignoreLimitWarning": true
+	}
+}

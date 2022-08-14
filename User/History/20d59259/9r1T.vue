@@ -1,0 +1,39 @@
+<script setup lang="ts">
+  import { saveCustomDiscretion } from '@/api/program/program'
+  import { ICustomDiscretion, ICustomDiscretionFormalParameter } from '@/api/program/types'
+  import { useForm } from '@/components/form'
+  import { customSchemas } from './custom-schemas'
+
+  const props = defineProps({
+    programCauseId: {
+      type: String as PropType<string>,
+      default: ''
+    }
+  })
+
+  const emits = defineEmits(['handleSubmit'])
+
+  const [register] = useForm({
+    gridProps: {
+      cols: 1
+    },
+    labelWidth: 80,
+    submitButtonText: '保存',
+    showAdvancedButton: false,
+    schemas: customSchemas
+  })
+
+  async function onSubmit(values: ICustomDiscretionFormalParameter) {
+    let params = {
+      ...values,
+      proceduresCauseId: props.programCauseId
+    }
+    let res: ICustomDiscretion = await saveCustomDiscretion(params)
+    emits('handleSubmit', res)
+  }
+</script>
+<template>
+  <div class="custom-discretion">
+    <basic-form @register="register" @submit="onSubmit" />
+  </div>
+</template>

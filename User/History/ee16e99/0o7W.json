@@ -1,0 +1,51 @@
+{
+  "name": "vms-app2",
+  "version": "1.0.0",
+  "private": true,
+  "description": "",
+  "templateInfo": {
+    "name": "vue3-NutUI",
+    "typescript": true,
+    "css": "sass"
+  },
+  "scripts": {
+    "build:weapp": "taro build --type weapp",
+    "dev:weapp": "npm run build:weapp -- --watch",
+    "dev:h5": "npm run build:h5 -- --watch"
+  },
+  "browserslist": [
+    "last 3 versions",
+    "Android >= 4.1",
+    "ios >= 8"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@babel/runtime": "^7.7.7",
+    "@tarojs/runtime": "3.4.6",
+    "@tarojs/taro": "3.4.6",
+    "@tarojs/components": "3.4.6",
+    "@tarojs/plugin-html": "3.4.6",
+    "@tarojs/plugin-framework-vue3": "3.4.6",
+    "vue": "^3.0.0",
+    "@nutui/nutui-taro": "^3.1.8"
+  },
+  "devDependencies": {
+    "@types/webpack-env": "^1.13.6",
+    "@tarojs/mini-runner": "3.4.6",
+    "@tarojs/webpack-runner": "3.4.6",
+    "@babel/core": "^7.8.0",
+    "@tarojs/cli": "3.4.6",
+    "babel-preset-taro": "3.4.6",
+    "babel-plugin-import": "^1.13.3",
+    "@vue/compiler-sfc": "^3.0.0",
+    "vue-loader": "^16.0.0-beta.8",
+    "eslint-plugin-vue": "^7.0.0",
+    "eslint-config-taro": "3.4.6",
+    "eslint": "^6.8.0",
+    "stylelint": "9.3.0",
+    "@typescript-eslint/parser": "^2.x",
+    "@typescript-eslint/eslint-plugin": "^2.x",
+    "typescript": "^3.7.0"
+  }
+}

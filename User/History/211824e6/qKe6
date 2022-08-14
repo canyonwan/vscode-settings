@@ -1,0 +1,283 @@
+# Fig pre block. Keep at the top of this file.
+[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && . "$HOME/.fig/shell/zshrc.pre.zsh"
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
+
+ZSH_THEME="spaceship"
+# Path to your oh-my-zsh installation.
+export ZSH="/Users/canyonwan/.oh-my-zsh"
+export HOMEBREW_GITHUB_API_TOKEN=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
+# Set name of the theme to load --- if set to "random", it will
+# load a random theme each time oh-my-zsh is loaded, in which case,
+# to know which specific one was loaded, run: echo $RANDOM_THEME
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+plugins=(
+  git
+  zsh-autosuggestions
+  zsh-syntax-highlighting
+  zsh-z
+)
+
+source $ZSH/oh-my-zsh.sh
+
+
+# -------------------------------- #
+# Proxy
+# -------------------------------- #
+alias proxy='export http_proxy=http://127.0.0.1:1087;export https_proxy=http://127.0.0.1:1087;'
+alias unproxy='unset all _proxy http_proxy https_proxy HTTP_PROXY HTTPS_PROXY'
+
+# -------------------------------- #
+# Git
+# -------------------------------- #
+alias init='degit github.com/antfu/vitesse $1'
+
+# Use github/hub
+# alias git=hub
+
+# Go to project root
+# alias grt='cd "$(git rev-parse --show-toplevel)"'
+
+# alias gs='git status'
+# alias gp='git push'
+# alias gpf='git push --force'
+# alias gpft='git push --follow-tags'
+# alias gpl='git pull --rebase'
+# alias gcl='git clone'
+# alias gst='git stash'
+# alias grm='git rm'
+# alias gmv='git mv'
+
+# alias main='git checkout main'
+
+# alias gco='git checkout'
+# alias gcob='git checkout -b'
+
+# alias gb='git branch'
+# alias gbd='git branch -d'
+
+# alias grb='git rebase'
+# alias grbom='git rebase origin/master'
+# alias grbc='git rebase --continue'
+
+# alias gl='git log'
+# alias glo='git log --oneline --graph'
+
+# alias grh='git reset HEAD'
+# alias grh1='git reset HEAD~1'
+
+# alias ga='git add'
+# alias gA='git add -A'
+
+# alias gc='git commit'
+# alias gcm='git commit -m'
+# alias gca='git commit -a'
+# alias gcam='git add -A && git commit -m'
+# alias gfrb='git fetch origin && git rebase origin/master'
+
+# alias gxn='git clean -dn'
+# alias gx='git clean -df'
+
+# alias gsha='git rev-parse HEAD | pbcopy'
+
+# alias ghci='gh run list -L 1'
+
+
+function glp() {
+  git --no-pager log -$1
+}
+
+function gd() {
+  if [[ -z $1 ]] then
+    git diff --color | diff-so-fancy
+  else
+    git diff --color $1 | diff-so-fancy
+  fi
+}
+
+function gdc() {
+  if [[ -z $1 ]] then
+    git diff --color --cached | diff-so-fancy
+  else
+    git diff --color --cached $1 | diff-so-fancy
+  fi
+}
+
+# -------------------------------- #
+# Directories
+#
+# I put
+# `~/i` for my projects
+# `~/f` for forks
+# `~/r` for reproductions
+# -------------------------------- #
+
+function i() {
+  cd ~/i/$1
+}
+
+function h() {
+  cd ~/Documents/canyonwan_projects
+}
+
+function repros() {
+  cd ~/r/$1
+}
+
+function forks() {
+  cd ~/f/$1
+}
+
+function pr() {
+  if [ $1 = "ls" ]; then
+    gh pr list
+  else
+    gh pr checkout $1
+  fi
+}
+
+function dir() {
+  mkdir $1 && cd $1
+}
+
+function clone() {
+  if [[ -z $2 ]] then
+    hub clone "$@" && cd "$(basename "$1" .git)"
+  else
+    hub clone "$@" && cd "$2"
+  fi
+}
+
+# Clone to ~/i and cd to it
+function clonei() {
+  i && clone "$@" && code . && cd ~2
+}
+
+function cloner() {
+  repros && clone "$@" && code . && cd ~2
+}
+
+function clonef() {
+  forks && clone "$@" && code . && cd ~2
+}
+
+function codei() {
+  i && code "$@" && cd -
+}
+
+function serve() {
+  if [[ -z $1 ]] then
+    live-server dist
+  else
+    live-server $1
+  fi
+}
+# User configuration
+
+# export MANPATH="/usr/local/man:$MANPATH"
+
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
+
+
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"
+
+# Set personal aliases, overriding those provided by oh-my-zsh libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
+#
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
+# ------------------------------------------------------------------- #
+#  Flutter env
+# ------------------------------------------------------------------- #
+export PUB_HOSTED_URL=https://pub.flutter-io.cn
+export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
+export PATH="$PATH:/Users/canyonwan/Documents/flutter/bin"
+export PATH="$PATH":"$HOME/.pub-cache/bin"
+export PATH="$PATH:/Users/canyonwan/Documents/flutter/bin/cache/dart-sdk/bin"
+
+
+# ------------------------------------------------------------------- #
+#  Golang env
+# ------------------------------------------------------------------- #
+#GOROOT
+export GOROOT=/usr/local/go
+#GOPATH
+export GOPATH=/Users/canyonwan/go
+#GOROOT bin
+export PATH=$PATH:$GOROOT/bin
+#GOPATH bin
+export PATH=$PATH:$GOPATH/bin
+#GO Modules 功能
+export GO111MODULE=on
+#GO Proxy
+export GOPROXY=https://goproxy.io,direct
+export PATH=$PATH:$(go env GOPATH)/bin
+
+
+#source ~/powerlevel10k/powerlevel10k.zsh-theme
+# 配置java
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-14.0.2.jdk/Contents/Home
+export PATH=$JAVA_HOME/bin:$PATH:.
+export CLASSPATH=$JAVA_HOME/lib/tools.jar:$JAVA_HOME/lib/dt.jar:.
+
+
+export PATH=/Users/canyonwan/nvim-osx64/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:/Library/Apple/usr/bin:/Users/canyonwan/.cargo/bin:/Users/canyonwan/Documents/flutter/bin:/Users/canyonwan/.pub-cache/bin:/Users/canyonwan/Documents/flutter/bin/cache/dart-sdk/bin:/usr/local/go/bin:/Users/canyonwan/go/bin
+
+
+
+# ---------------------------------
+# Golang air
+# ---------------------------------
+alias air='~/.air'
+
+
+# ---------------------------------
+# neovim
+# ---------------------------------
+export EDITOR=nvim
+export VISUAL="$EDITOR"
+alias vim='nvim'
+alias vi='nvim'
+alias v='nvim'
+
+# export NVM_DIR=~/.nvm 
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+
+# ---------------------------------
+# Aliases
+# ---------------------------------
+alias nio="ni -prefer-offline"
+alias s="nr start"
+alias d="nr dev"
+alias dw="nr dev:mp-weixin"
+alias ns="nr serve"
+alias b="nr build"
+alias t="nr test"
+alias tu="nr test -u"
+alias p="nr play"
+alias ct="nr typecheck"
+alias release="proxy; nr release"
+alias lint="nr lint"
+alias lintf="nr lint --fix"
+alias nt="npx vitest"
+alias clir="npm run serve"
+
+# pnpm
+export PATH="$HOME/.pnpm-store/bin:$PATH"
+
+# yarn
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+# jetbrains
+___MY_VMOPTIONS_SHELL_FILE="${HOME}/.jetbrains.vmoptions.sh"; if [ -f "${___MY_VMOPTIONS_SHELL_FILE}" ]; then . "${___MY_VMOPTIONS_SHELL_FILE}"; fi
+
+# Fig post block. Keep at the bottom of this file.
+[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && . "$HOME/.fig/shell/zshrc.post.zsh"

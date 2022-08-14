@@ -1,0 +1,22 @@
+{
+  "name": "vms-app",
+  "appid": "__UNI__4DCD124",
+  "description": "",
+  "versionName": "1.0.0",
+  "versionCode": "100",
+  "transformPx": false,
+  /* 小程序特有相关 */
+  "mp-weixin": {
+    "appid": "wx0fedf73090af5391",
+    "setting": {
+      "urlCheck": false,
+      "checkSiteMap": false,
+      "es6": true
+    },
+    "usingComponents": true
+  },
+  "uniStatistics": {
+    "enable": false
+  },
+  "vueVersion": "3"
+}
